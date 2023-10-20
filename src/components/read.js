@@ -1,45 +1,32 @@
 import Books from "./books";
-
+import {useEffect, useState} from "react";
+import axios from "axios"; 
 
 
 function Read() {
-    //JSON data containing inforation on books
-    const data = [
-        {
-            "title": "Learn Git in a Month of Lunches",
-            "isbn": "1617292419",
-            "pageCount": 0,
-            "thumbnailUrl":
-                "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/umali.jpg",
-            "status": "MEAP",
-            "authors": ["Rick Umali"],
-            "categories": []
-        },
-        {
-            "title": "MongoDB in Action, Second Edition",
-            "isbn": "1617291609",
-            "pageCount": 0,
-            "thumbnailUrl":
-                "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/banker2.jpg", "status": "MEAP",
-            "authors": [
-                "Kyle Banker",
-                "Peter Bakkum",
-                "Tim Hawkins",
-                "Shaun Verch",
-                "Douglas Garrett"
-            ],
-            "categories": []
-        },
-        {
-            "title": "Getting MEAN with Mongo, Express, Angular, and Node",
-            "isbn": "1617292036",
-            "pageCount": 0,
-            "thumbnailUrl":
-                "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/sholmes.jpg", "status": "MEAP",
-            "authors": ["Simon Holmes"],
-            "categories": []
-        }
-    ];
+    /*Passing a variable and method to update variable */
+    const [data, setData] = useState([]);
+
+
+    //asyncrinous method that makes a http request
+    useEffect(
+        ()=>{
+            axios.get('https://jsonblob.com/api/jsonblob/1161593332966481920')/*Generates a Http request to the url and collects data */
+            //when we receive response pull the data into the setData method
+            .then(
+                (response)=>{//response function that sets the http data into the data constant variable using the setData function
+                    setData(response.data.books)
+                }
+            )
+            //when there is no response catch the error
+            .catch(
+                (error)=>{//function that prints out the error when the error is caught
+                    console.log(error);
+                }
+            );
+        },[]
+    );
+
     return (
         <div>
             <h1>Read Component</h1>
