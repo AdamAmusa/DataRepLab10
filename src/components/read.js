@@ -11,11 +11,11 @@ function Read() {
     //asyncrinous method that makes a http request
     useEffect(
         ()=>{
-            axios.get('https://jsonblob.com/api/jsonblob/1161593332966481920')/*Generates a Http request to the url and collects data */
+            axios.get('http://localhost:4000/api/books')/*Generates a Http request to the url and collects data */
             //when we receive response pull the data into the setData method
             .then(
                 (response)=>{//response function that sets the http data into the data constant variable using the setData function
-                    setData(response.data.books)
+                    setData(response.data.myBooks)
                 }
             )
             //when there is no response catch the error

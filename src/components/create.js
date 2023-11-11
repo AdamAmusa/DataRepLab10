@@ -1,4 +1,6 @@
 import { useState } from "react";
+import axios from 'axios';
+
 
 function Create() {
 
@@ -16,10 +18,22 @@ function Create() {
                     " Author: " + author);
     }
 
+    //book object that will have data for the webpage api/book
+    const book = {
+        title:title,
+        cover:cover,
+        author:author
+    }
+
+    //logs information to the web page console
+    axios.post('http://localhost:4000/api/book', book)
+    .then()
+    .catch();
+
     return (
         <div>
             <h1>Hello from the create Component!</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}> {/*returns a function when the form is submitted */}
                 {/*Allows the user to input values from the webpage into the variables */}
                 <div className="form-group">
                     <label>Add Book Title: </label>
