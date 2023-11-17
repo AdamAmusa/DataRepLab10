@@ -16,7 +16,7 @@ function Create() {
         console.log("Title: " + title+
                     " Cover: " +cover+
                     " Author: " + author);
-    }
+    
 
     //book object that will have data for the webpage api/book
     const book = {
@@ -29,7 +29,7 @@ function Create() {
     axios.post('http://localhost:4000/api/book', book)
     .then()
     .catch();
-
+    }
     return (
         <div>
             <h1>Hello from the create Component!</h1>

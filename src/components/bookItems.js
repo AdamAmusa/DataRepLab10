@@ -11,9 +11,9 @@ function Bookitems(props) {
                 <Card.Header>{props.myBook.title}</Card.Header> {/*Prints title of books */}
                 <Card.Body>
                 <blockquote className = "blockquote mb-0">   
-                    <img src={props.myBook.thumbnailUrl}></img>{/*Prints out photo of books */}
+                    <img src={props.myBook.cover}></img>{/*Prints out photo of books */}
                     <footer>
-                    <Card.Text>{props.myBook.authors[0]}</Card.Text>{/*Prints out authors of books */}
+                    <Card.Text>{props.myBook.author}</Card.Text>{/*Prints out authors of books */}
                     </footer>
                     </blockquote> 
                 </Card.Body>

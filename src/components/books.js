@@ -6,7 +6,7 @@ function Books(props) {
     //splits the array of books into individual books
     return props.myBook.map(
         (book) => {
-            return <Bookitems myBook={book} key={book.isbn}></Bookitems> //passes data to book item component
+            return <Bookitems myBook={book} key={book._id}></Bookitems> //passes data to book item component
 
         }
     );

@@ -15,7 +15,7 @@ function Read() {
             //when we receive response pull the data into the setData method
             .then(
                 (response)=>{//response function that sets the http data into the data constant variable using the setData function
-                    setData(response.data.myBooks)
+                    setData(response.data)
                 }
             )
             //when there is no response catch the error
