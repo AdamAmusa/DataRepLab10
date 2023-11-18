@@ -8,14 +8,18 @@ const cors = require('cors');
 //allows control access to server
 app.use(cors());
 app.use(function (req, res, next) {
+    //response headers that will print out onto the page
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+// Middleware to parse incoming request bodies
 const bodyParser = require('body-parser');
+// Parse URL-encoded data and populate the req.body object
 app.use(bodyParser.urlencoded({ extended: false }));
+// Parse JSON data and populate the req.body object
 app.use(bodyParser.json());
 
 
@@ -30,7 +34,7 @@ async function main() {
     // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
 
-
+//defines objects for the book collection
 const bookSchema = new mongoose.Schema({
     title: String,
     cover: String,
@@ -49,6 +53,7 @@ app.get('/', (req, res) => {
 app.post('/api/book', (req, res) => {
     console.log(req.body);
 
+    //Creates new book in the database using data from the create page
     bookModel.create({
         title: req.body.title,
         cover: req.body.cover,
