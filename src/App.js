@@ -9,6 +9,7 @@ import Read from './components/read';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
+import Edit from './components/edit';
 
 import {BrowserRouter,Routes, Route} from 'react-router-dom';
 
@@ -33,6 +34,7 @@ function App() {
         <Route path = '/' element={<Content></Content>}></Route>{/*Home button that will redirect you to the home component */}
         <Route path ='/Create' element={<Create></Create>}></Route>{/*Button named "Create" that redirects you to the content component */}
         <Route path = '/read' element={<Read></Read>}></Route>{/* Button named "Read" that will redirect the user to the footer component*/}
+        <Route path = '/edit/:id' element={<Edit></Edit>}></Route>{/*If the Url of the app changes to edit/ the id load my component */}
       </Routes>
     </div>
     </BrowserRouter>

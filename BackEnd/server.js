@@ -44,6 +44,15 @@ const bookSchema = new mongoose.Schema({
 //confirms which database you would like the collection to be in
 const bookModel = mongoose.model('my_books22', bookSchema);
 
+
+app.put('/api/book/:id', async(req, res)=>{//routes the HTTP PUT requests to the specified path with the specified callback functions based off of the id
+
+    console.log("Update: " + req.params.id);
+
+    let book = await bookModel.findByIdAndUpdate(req.params.id, req.body, {new:true}); //replaces the whole mongose data from a specific id
+    res.send(book);//sends data to webpage
+})
+
 //root page prints out hello world
 app.get('/', (req, res) => {
     res.send('Hello World!')
@@ -75,8 +84,8 @@ app.get('/api/books', async(req, res) => {
 app.get('/api/book/:identifier', async(req,res)=>{
     console.log(req.params.identifier);
 
-    let book = await bookModel.findById(req.params.identifier);
-    res.send(book);
+    let book = await bookModel.findById(req.params.identifier); //Finds book by id
+    res.send(book);//sends the book that was found to the webpage
 })
 
 //port listener
