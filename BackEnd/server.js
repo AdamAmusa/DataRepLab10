@@ -44,12 +44,21 @@ const bookSchema = new mongoose.Schema({
 //confirms which database you would like the collection to be in
 const bookModel = mongoose.model('my_books22', bookSchema);
 
+//server listens for a http request with a delete method
+app.delete('/api/book/:id', async (req, res)=>{
+    console.log("Delete: "+req.params.id);
+    
+    let book = await bookModel.findByIdAndDelete(req.params.id);//find a book with the id and deletes it
+    res.send(book);
+})
+
 
 app.put('/api/book/:id', async(req, res)=>{//routes the HTTP PUT requests to the specified path with the specified callback functions based off of the id
 
     console.log("Update: " + req.params.id);
 
     let book = await bookModel.findByIdAndUpdate(req.params.id, req.body, {new:true}); //replaces the whole mongose data from a specific id
+
     res.send(book);//sends data to webpage
 })
 

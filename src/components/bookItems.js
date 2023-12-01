@@ -1,5 +1,7 @@
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 
 function Bookitems(props) {
 
@@ -18,7 +20,14 @@ function Bookitems(props) {
                         </footer>
                     </blockquote>
                 </Card.Body>
-                <Link to={'/edit/' + props.myBook._id} className="btn btn-primary">Edit</Link> {/**/}
+                <Link to={'/edit/' + props.myBook._id} className="btn btn-primary">Edit</Link> {/*Button that directs the page to another page to edit books*/}
+                <Button variant = "danger" onClick={(e)=>{//when button is clicked the function is called
+                    axios.delete('http://localhost:4000/api/book/'+props.myBook._id)//delete book with this ID
+                    .then((res)=>{
+                        let reload = props.Reload();
+                    })
+                    .catch();
+                }}>Delete</Button>
             </Card>
 
         </div>
